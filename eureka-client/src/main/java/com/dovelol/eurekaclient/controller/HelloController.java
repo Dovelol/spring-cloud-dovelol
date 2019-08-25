@@ -7,6 +7,8 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 /**
  * @author Dovelol
  * @date 2019/8/17 18:08
@@ -21,7 +23,10 @@ public class HelloController {
 
 
     @GetMapping("/hello")
-    public String index(){
+    public String index() throws InterruptedException {
+        int sleepTime = new Random().nextInt(3000);
+        logger.info("sleepTime:"+sleepTime);
+        Thread.sleep(sleepTime);
         return "Hello World!";
     }
 
